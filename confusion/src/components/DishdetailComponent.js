@@ -23,11 +23,10 @@ class DishDetail extends Component{
     renderComments(comments){
         const feedback = comments.map((comment) => {
 
-            const date = new Date(comment.date);
             return(
                 <ul className="list-unstyled">
                     <li>{comment.comment}</li>
-                    <li>-- {comment.author}, {date.toDateString().slice(4,10)}, {date.toDateString().slice(10)}</li>
+                    <li>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</li>
                 </ul>
             );
         });
@@ -51,15 +50,17 @@ class DishDetail extends Component{
 
         if (dish != null)
             return(
-                <div className="row">
-                    <div  className="col-12 col-md-5 m-1">
-                        {this.renderDish(dish)}
-                    </div>
+                <div className="container">
+                    <div className="row">
+                        <div  className="col-12 col-md-5 m-1">
+                            {this.renderDish(dish)}
+                        </div>
 
-                    <div className="col-12 col-md-5 m-1">
-                        {this.renderComments(dish.comments)}
-                    </div>
-                </div>            
+                        <div className="col-12 col-md-5 m-1">
+                            {this.renderComments(dish.comments)}
+                        </div>
+                    </div> 
+                </div>           
             );
         else
             return(
