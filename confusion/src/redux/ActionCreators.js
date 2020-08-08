@@ -43,12 +43,13 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     .catch(error =>  { console.log('post comments', error.message); alert('Your comment could not be posted\nError: '+error.message); });
 };
 
-//feedback
+//feedback action
 export const addFeedback = (feedback) => ({
     type: ActionTypes.ADD_FEEDBACK,
     payload: feedback
 });
 
+//feedback thunk
 export const postFeedback = (feedbackId, firstname, lastname, telnum, email, agree, contactType, message) => (dispatch) => {
 
     const newFeedback = {
